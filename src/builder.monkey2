@@ -21,7 +21,6 @@ Class ImportBuilder
 		Local paths:= LoadRDir( settings.parseDir )
 		
 		
-		
 		Local basedir:=CurrentDir()' get a base path to strip from the path
 		For Local path:=Eachin paths
 			' ignore all non monkey2 files
