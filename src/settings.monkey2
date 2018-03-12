@@ -37,5 +37,6 @@ Struct Settings
 	
 	Field outputFile:=""
 	Field parseDir:=""
+	Field ignoreStarting:=""
 	
 End
