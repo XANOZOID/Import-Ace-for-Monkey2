@@ -10,12 +10,12 @@ Class ImportBuilder
 		Self.settings=settings
 	End
 	
-	Method BuildImports()
+	Method Build()
 		' open our stream
-		stream=FileStream.Open( settings.outputFile, "w" )
+		_stream=FileStream.Open( settings.outputFile, "w" )
 		
 		' Add in our little stamp
-		stream.WriteLine( "'Generated with https://github.com/abe-noll/Project-Import-Automation-Mx2" )
+		_stream.WriteLine( "'Generated with https://github.com/abe-noll/Project-Import-Automation-Mx2" )
 		
 		'get all paths from our dir
 		Local paths:= LoadRDir( settings.parseDir )
@@ -28,14 +28,14 @@ Class ImportBuilder
 			If Not path.EndsWith(".monkey2") Continue
 			
 			' make current file relative
-			Local relpath:=path.Replace( cdir, "")
+			Local relpath:=path.Replace( basedir, "")
 			
 			' write to output
-			stream.WriteLine( "#Import ~q"+relpath+"~q")
+			_stream.WriteLine( "#Import ~q"+relpath+"~q")
 		
 		Next
 		
-		stream.Close()
+		_stream.Close()
 	End
 	
 Private

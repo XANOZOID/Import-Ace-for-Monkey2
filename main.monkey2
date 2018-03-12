@@ -1,39 +1,21 @@
-#Import "<std>"
-Using std..
+Namespace importer
+#Import "src/settings"
+#Import "src/builder"
 
-Const writefile:="imports.monkey2"
-Const importDir:="src"
-Const ignoreMatch:="_"
-Global cdir:String
-Global stream:FileStream
+
+Const loadFile:="import_cfg.json"
 
 Function Main()
-	stream=FileStream.Open( writefile, "w" )
-	
-	'all files of the current dir 
-	cdir=CurrentDir() + importDir
-	Local paths:= LoadRDir( cdir )
-	cdir=CurrentDir()
-	
-	For Local path:=Eachin paths
-		If Not path.EndsWith(".monkey2") Continue
-		Local relpath:=path.Replace( cdir, "")
-		stream.WriteLine( "#Import ~q"+relpath+"~q")
-	Next
-	
-	stream.Close()
+	Local loader:=New SettingsLoader( loadFile, Defaults() )
+	Local settings:=loader.Load()
+	Local builder:=New ImportBuilder( settings )
+	builder.Build()
 End
 
-Function LoadRDir:StringStack( path:String, s:StringStack=New StringStack )
-	Local paths:=LoadDir( path )
-	For Local _path:=Eachin paths
-		' ignore any file that begins with the ignore match
-		If _path.StartsWith(ignoreMatch) Continue
-		If GetFileType(path)=FileType.Directory
-			LoadRDir( path +"/"+ _path, s)
-		Else
-			s.Push( path )
-		End
-	Next
-	Return s
+Function Defaults:Settings()
+	Local settings:=New Settings
+	settings.outputFile="importfortune.monkey2"
+	settings.parseDir="src"
+	settings.ignoreStarting="_"
+	Return settings
 End

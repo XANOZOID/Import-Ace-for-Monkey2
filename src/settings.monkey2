@@ -1,8 +1,6 @@
 Namespace importer
 #Import "<std>"
-#Import "<json>"
 
-Using json..
 Using std..
 
 Class SettingsLoader
@@ -15,8 +13,9 @@ Class SettingsLoader
 	#Rem monkeydoc loads settings from a file, else generates&returns defaults
 	#End
 	Method Load:Settings()
-		If GetFileType(file)=FileType.File Then 
+		If GetFileType(_file)=FileType.File Then 
 			' parse json file here
+			Return Null
 		Else
 			Return GenerateDefaults()
 		End
