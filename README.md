@@ -14,7 +14,7 @@ and make a file specifically containing all of their imports.
 
 ```json
 	{
-		"output file": "import_wish.monkey2",
+		"output file": "import_ace.monkey2",
 		"parse directory": "src",
 		"ignore start": "_"
 	}
