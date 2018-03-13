@@ -15,7 +15,7 @@ Class ImportBuilder
 		_stream=FileStream.Open( settings.outputFile, "w" )
 		
 		' Add in our little stamp
-		_stream.WriteLine( "'Generated with https://github.com/abe-noll/Project-Import-Automation-Mx2" )
+		_stream.WriteLine( homeRepo )
 		
 		'get all paths from our dir
 		Local paths:= LoadRDir( settings.parseDir )

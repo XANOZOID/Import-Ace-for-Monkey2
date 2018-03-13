@@ -9,11 +9,12 @@ Namespace importer
 		{
 			"output file": "import_wish.monkey2",
 			"parse directory": "src",
-			"ignore start": "_" // ignores files starting with _
+			"ignore start": "_" // ignores files|directories starting with _
 		}
 	@end
 #End
 Const cfgFile:="import_cfg.json"
+Const homeRepo:="'Generated with https://github.com/abe-noll/Import-Ace-for-Monkey2"
 
 Function Main()
 	Local loader:=New SettingsLoader( cfgFile, Defaults() )
@@ -24,7 +25,7 @@ End
 
 Function Defaults:Settings()
 	Local settings:=New Settings
-	settings.outputFile="import_wish.monkey2"
+	settings.outputFile="import_ace.monkey2"
 	settings.parseDir="src"
 	settings.ignoreStarting=""
 	Return settings
