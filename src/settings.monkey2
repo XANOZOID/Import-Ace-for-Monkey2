@@ -37,6 +37,12 @@ Private
 			json.Save( _file )
 		End
 		
+		Return Realify(settings)
+	End
+	
+	Method Realify:Settings( settings:Settings )
+		settings.outputFile=AppDir() + settings.outputFile
+		settings.parseDir=AppDir() + settings.parseDir
 		Return settings
 	End
 	

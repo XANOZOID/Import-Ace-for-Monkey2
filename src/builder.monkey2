@@ -20,8 +20,7 @@ Class ImportBuilder
 		'get all paths from our dir
 		Local paths:= LoadRDir( settings.parseDir )
 		
-		
-		Local basedir:=CurrentDir()' get a base path to strip from the path
+		Local basedir:= settings.parseDir ' get a base path to strip from the path
 		For Local path:=Eachin paths
 			' ignore all non monkey2 files
 			If Not path.EndsWith(".monkey2") Continue
@@ -44,7 +43,7 @@ Private
 		Local paths:=LoadDir( path )
 		For Local _path:=Eachin paths
 			' ignore any file that begins with the ignore match
-			If _path.StartsWith( settings.ignoreStarting ) Continue
+			If settings.ignoreStarting<>"" And _path.StartsWith( settings.ignoreStarting ) Continue
 			
 			If GetFileType(path)=FileType.Directory
 				LoadRDir( path +"/"+ _path, s)
